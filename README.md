@@ -15,6 +15,7 @@ python -m venv env
 
 ### 3. Activate the Virtual Environment
 Activate the virtual environment based on your operating system:
+
 **Windows**:
 ```
 .\env\Scripts\activate
