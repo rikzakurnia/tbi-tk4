@@ -9,6 +9,8 @@ def index():
 @main.route("/results", methods=["POST"])
 def results():
     query = request.form.get("query")
+    print("INPUT QUERY")
+    print(query)
 
     # Using env variable
     ENV_EXAMPLE = current_app.config['ENV_EXAMPLE']
@@ -17,7 +19,11 @@ def results():
     results = [
         {"title": "Mock Title 1", "snippet": "This is a snippet of result 1."},
         {"title": "Mock Title 2", "snippet": "This is a snippet of result 2."},
+        {"title": "Mock Title 2", "snippet": "This is a snippet of result 2."},
+        {"title": "Mock Title 2", "snippet": "This is a snippet of result 2."},
+        {"title": "Mock Title 2", "snippet": "This is a snippet of result 2."},
         {"title": ENV_EXAMPLE, "snippet": "This is a snippet of result 2."},
+        {"title": query, "snippet": "ini input query nya"}
 
     ]
     return render_template("results.html", query=query, results=results)

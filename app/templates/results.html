@@ -3,14 +3,40 @@
 {% block title %}Search Results{% endblock %}
 
 {% block content %}
-<h1 class="text-2xl font-bold mb-4">Search Results for "{{ query }}"</h1>
-<ul class="space-y-4">
-    {% for result in results %}
-    <li class="p-4 bg-white shadow rounded">
-        <h2 class="text-xl font-semibold">{{ result.title }}</h2>
-        <p>{{ result.snippet }}</p>
-    </li>
-    {% endfor %}
-</ul>
-<a href="{{ url_for('main.index') }}" class="text-blue-600">Back to search</a>
+<div class="flex flex-col items-center w-full">
+    <!-- Search Bar -->
+    <div class="w-full max-w-2xl mt-8 mb-6">
+        <form method="POST" action="{{ url_for('main.results') }}" class="flex items-center border rounded-full shadow-md px-4 py-2">
+            <input 
+                type="text" 
+                name="query" 
+                value="{{ query }}" 
+                class="flex-grow outline-none px-2 py-1 text-lg bg-gray-100" 
+                placeholder="Search again"
+            >
+            <button 
+                type="submit" 
+                class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium ml-2"
+            >
+                Search
+            </button>
+        </form>
+    </div>
+
+    <!-- Search Results -->
+    <div class="w-full max-w-3xl">
+        <h1 class="text-xl font-semibold mb-4">Search Results for "{{ query }}"</h1>
+        <ul class="space-y-4">
+            {% for result in results %}
+            <li class="p-4 bg-white shadow rounded border">
+                <h2 class="text-lg font-semibold mb-2">{{ result.title }}</h2>
+                <p class="text-gray-700">{{ result.snippet }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="mt-6 text-center">
+            <a href="{{ url_for('main.index') }}" class="text-blue-600 hover:underline">Back to search</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
