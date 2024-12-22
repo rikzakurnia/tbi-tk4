@@ -1,12 +1,16 @@
 import pickle
+import tempfile
 from gensim.models import Doc2Vec
 import xgboost as xgb
 import pyterrier as pt
 import zipfile
 import os
 
+temp_dir = tempfile.mkdtemp()
+os.environ["PYTERRIER_HOME"] = temp_dir
+
 if not pt.started():
-    pt.terrier.set_version('snapshot')
+    pt.init(version="snapshot")
 
 TFIDF_MODEL_PATH = os.path.abspath("./app/model/tfidf_vectorizer.pkl")
 LSA_MODEL_PATH = os.path.abspath("./app/model/lsa_model.pkl")

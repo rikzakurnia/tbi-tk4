@@ -13,7 +13,6 @@ def results():
     query = request.form.get("query")
 
     documents_retrieved = retrieve_documents(query)
-
     results = []
 
     if documents_retrieved is not None:
