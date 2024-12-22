@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, current_app
 from .retrieval.retrieve import retrieve_documents
-from .utils import format_retrieved_data
 
 main = Blueprint('main', __name__)
 
@@ -16,6 +15,13 @@ def results():
     results = []
 
     if documents_retrieved is not None:
-        results = format_retrieved_data(documents_retrieved)
+        results = documents_retrieved
 
     return render_template("results.html", query=query, results=results)
+
+@main.route('/view-document', methods=['POST'])
+def view_document():
+    doc_title = request.form['doc_title']
+    doc_fulltext = request.form['doc_fulltext']
+    print(doc_title)
+    return render_template('view_document.html', title=doc_title, fulltext=doc_fulltext)

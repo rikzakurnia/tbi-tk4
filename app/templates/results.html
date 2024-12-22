@@ -30,8 +30,15 @@
         <ul class="space-y-4">
             {% for result in results %}
             <li class="p-4 bg-white shadow rounded border">
-                <h2 class="text-lg font-semibold mb-2">{{ result.title }}</h2>
-                <p class="text-gray-700">{{ result.snippet }}</p>
+                <form action="/view-document" method="POST">
+                    <!-- Add a hidden input to pass the full text -->
+                    <input type="hidden" name="doc_title" value="{{ result[0] }}">
+                    <input type="hidden" name="doc_fulltext" value="{{ result[1] }}">
+                    <button type="submit" class="text-left w-full">
+                        <h2 class="text-lg font-semibold mb-2">{{ result[0] }}</h2>
+                        <p class="text-gray-700">{{ result[1]|truncate(150) }}</p>
+                    </button>
+                </form>
             </li>
             {% endfor %}
         </ul>
