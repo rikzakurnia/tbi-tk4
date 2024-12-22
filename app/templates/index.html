@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Search Page{% endblock %}
+{% block title %}Medical Document Search{% endblock %}
 
 {% block content %}
 <div class="flex flex-col items-center justify-center h-screen">
-    <h1 class="text-3xl font-semibold mb-8">Search App</h1>
+    <h1 class="text-3xl font-semibold mb-1">Search Documents</h1>
+    <h1 class="text-l mb-8">search for medical documents</h1>
     <form method="POST" action="{{ url_for('main.results') }}" class="w-full max-w-lg">
         <div class="flex items-center border rounded-full shadow-md px-4 py-2">
             <input 
