@@ -39,12 +39,14 @@ pytrec-eval-terrier==0.5.6
 pytz==2024.2
 PyYAML==6.0.2
 requests==2.32.3
+scikit-learn==1.6.0
 scipy==1.13.1
 six==1.17.0
 smart-open==7.1.0
 soupsieve==2.6
 statsmodels==0.14.4
 textsearch==0.0.24
+threadpoolctl==3.5.0
 tqdm==4.67.1
 trec-car-tools==2.6
 tzdata==2024.2

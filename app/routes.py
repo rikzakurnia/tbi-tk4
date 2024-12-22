@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, current_app
+from .retrieval.retrieve import retrieve_documents
+from .utils import format_retrieved_data
 
 main = Blueprint('main', __name__)
 
@@ -9,21 +11,12 @@ def index():
 @main.route("/results", methods=["POST"])
 def results():
     query = request.form.get("query")
-    print("INPUT QUERY")
-    print(query)
 
-    # Using env variable
-    ENV_EXAMPLE = current_app.config['ENV_EXAMPLE']
+    documents_retrieved = retrieve_documents(query)
 
-    # Mock results for now
-    results = [
-        {"title": "Mock Title 1", "snippet": "This is a snippet of result 1."},
-        {"title": "Mock Title 2", "snippet": "This is a snippet of result 2."},
-        {"title": "Mock Title 2", "snippet": "This is a snippet of result 2."},
-        {"title": "Mock Title 2", "snippet": "This is a snippet of result 2."},
-        {"title": "Mock Title 2", "snippet": "This is a snippet of result 2."},
-        {"title": ENV_EXAMPLE, "snippet": "This is a snippet of result 2."},
-        {"title": query, "snippet": "ini input query nya"}
+    results = []
 
-    ]
+    if documents_retrieved is not None:
+        results = format_retrieved_data(documents_retrieved)
+
     return render_template("results.html", query=query, results=results)
